@@ -24,17 +24,17 @@ def auth():
 
 
 @main.group()
-def accounts():
+def account():
     pass
 
 
-@accounts.command()
+@account.command()
 def list():
     pprint(request('GET', '/v2/accounts'))
 
 
-@accounts.command()
+@account.command()
 @click.argument('account_id')
-def account(account_id):
+def show(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}'))
 
