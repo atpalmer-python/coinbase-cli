@@ -21,13 +21,14 @@ def access_sign(ts, method, path, body):
     ).hexdigest()
 
 
-def request(path):
+def request(method, path):
     ts = int(time.time())
-    response = requests.get(
+    response = requests.request(
+        method,
         f'https://api.coinbase.com{path}',
         headers={
             'CB-ACCESS-KEY': os.getenv('API_KEY'),
-            'CB-ACCESS-SIGN': access_sign(ts, 'GET', path, ''),
+            'CB-ACCESS-SIGN': access_sign(ts, method, path, ''),
             'CB-ACCESS-TIMESTAMP': str(ts),
             'CB-VERSION': '2017-11-26',
         },
@@ -36,19 +37,19 @@ def request(path):
 
 
 def user():
-    return request('/v2/user')
+    return request('GET', '/v2/user')
 
 
 def user_auth():
-    return request('/v2/user/auth')
+    return request('GET', '/v2/user/auth')
 
 
 def accounts():
-    return request('/v2/accounts')
+    return request('GET', '/v2/accounts')
 
 
 def account(account_id):
-    return request(f'/v2/accounts/{account_id}')
+    return request('GET', f'/v2/accounts/{account_id}')
 
 
 pprint(account('BTC'))
