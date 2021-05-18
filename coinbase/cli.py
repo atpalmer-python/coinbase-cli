@@ -14,6 +14,12 @@ def user():
 
 
 @user.command()
+@click.argument('user_id')
+def show(user_id):
+    pprint(request('GET', f'/v2/users/{user_id}'))
+
+
+@user.command()
 def current():
     pprint(request('GET', '/v2/user'))
 
