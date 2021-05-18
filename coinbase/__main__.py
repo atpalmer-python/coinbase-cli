@@ -4,6 +4,7 @@ import os
 import time
 from pprint import pprint
 
+import click
 import dotenv
 import requests
 
@@ -36,21 +37,41 @@ def request(method, path):
     return response.json()
 
 
+@click.group()
+def main():
+    pass
+
+
+@main.group()
 def user():
-    return request('GET', '/v2/user')
+    pass
 
 
-def user_auth():
-    return request('GET', '/v2/user/auth')
+@user.command()
+def current():
+    pprint(request('GET', '/v2/user'))
 
 
+@user.command()
+def auth():
+    pprint(request('GET', '/v2/user/auth'))
+
+
+@main.group()
 def accounts():
-    return request('GET', '/v2/accounts')
+    pass
 
 
+@accounts.command()
+def list():
+    pprint(request('GET', '/v2/accounts'))
+
+
+@accounts.command()
+@click.argument('account_id')
 def account(account_id):
-    return request('GET', f'/v2/accounts/{account_id}')
+    pprint(request('GET', f'/v2/accounts/{account_id}'))
 
 
-pprint(account('BTC'))
+main()
 
