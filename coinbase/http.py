@@ -1,20 +1,14 @@
 import hashlib
 import hmac
-import os
 import time
-
-import dotenv
 import requests
-
-
-dotenv.load_dotenv()
+from .env import API_KEY, API_SECRET
 
 
 def access_sign(ts, method, path, body):
-    secret = os.getenv('API_SECRET')
     prehash = ''.join((str(ts), method, path, body))
     return hmac.new(
-        secret.encode('utf8'),
+        API_SECRET.encode('utf8'),
         prehash.encode('utf8'),
         hashlib.sha256
     ).hexdigest()
@@ -26,7 +20,7 @@ def request(method, path):
         method,
         f'https://api.coinbase.com{path}',
         headers={
-            'CB-ACCESS-KEY': os.getenv('API_KEY'),
+            'CB-ACCESS-KEY': API_KEY,
             'CB-ACCESS-SIGN': access_sign(ts, method, path, ''),
             'CB-ACCESS-TIMESTAMP': str(ts),
             'CB-VERSION': '2017-11-26',
