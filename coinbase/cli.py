@@ -34,6 +34,10 @@ def auth():
     pprint(request('GET', '/v2/user/auth'))
 
 
+# TODO (user):
+# https://developers.coinbase.com/api/v2#update-current-user
+
+
 # https://developers.coinbase.com/api/v2#accounts
 @main.group()
 def account():
