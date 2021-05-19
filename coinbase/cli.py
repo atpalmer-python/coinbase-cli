@@ -111,3 +111,7 @@ def show(account_id, address_id):
 def transactions(account_id, address_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/addresses/{address_id}/transactions'))
 
+
+# https://developers.coinbase.com/api/v2#create-address
+# TODO: Create address
+
