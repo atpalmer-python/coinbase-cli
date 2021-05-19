@@ -150,3 +150,16 @@ def show(account_id, buy_id):
 # https://developers.coinbase.com/api/v2#place-buy-order
 # https://developers.coinbase.com/api/v2#commit-a-buy
 
+
+# https://developers.coinbase.com/api/v2#sells
+@account.group()
+def sell():
+    pass
+
+
+# https://developers.coinbase.com/api/v2#list-sells
+@sell.command()
+@click.argument('account_id')
+def list(account_id):
+    pprint(request('GET', f'/v2/accounts/{account_id}/sells'))
+
