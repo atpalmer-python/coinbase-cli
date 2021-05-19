@@ -66,6 +66,14 @@ def list(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/transactions'))
 
 
+# https://developers.coinbase.com/api/v2#show-a-transaction
+@transaction.command()
+@click.argument('account_id')
+@click.argument('transaction_id')
+def show(account_id, transaction_id):
+    pprint(request('GET', f'/v2/accounts/{account_id}/transactions{transaction_id}'))
+
+
 # https://developers.coinbase.com/api/v2#addresses
 @account.group()
 def address():
