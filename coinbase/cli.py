@@ -53,6 +53,11 @@ def show(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}'))
 
 
+# TODO (account):
+# https://developers.coinbase.com/api/v2#update-account
+# https://developers.coinbase.com/api/v2#delete-account
+
+
 # https://developers.coinbase.com/api/v2#transactions
 @account.group()
 def transaction():
