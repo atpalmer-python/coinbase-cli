@@ -163,3 +163,11 @@ def sell():
 def list(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/sells'))
 
+
+# https://developers.coinbase.com/api/v2#show-a-sell
+@sell.command()
+@click.argument('account_id')
+@click.argument('sell_id')
+def show(account_id, sell_id):
+    pprint(request('GET', f'/v2/accounts/{account_id}/sells/{sell_id}'))
+
