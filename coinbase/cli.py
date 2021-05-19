@@ -65,3 +65,11 @@ def addresses():
 def list(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/addresses'))
 
+
+# https://developers.coinbase.com/api/v2#show-addresss
+@addresses.command()
+@click.argument('account_id')
+@click.argument('address_id')
+def show(account_id, address_id):
+    pprint(request('GET', f'/v2/accounts/{account_id}/addresses/{address_id}'))
+
