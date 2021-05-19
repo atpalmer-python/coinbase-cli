@@ -145,3 +145,8 @@ def list(account_id):
 def show(account_id, buy_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/buys/{buy_id}'))
 
+
+# TODO (account buy):
+# https://developers.coinbase.com/api/v2#place-buy-order
+# https://developers.coinbase.com/api/v2#commit-a-buy
+
