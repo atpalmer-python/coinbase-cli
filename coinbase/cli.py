@@ -124,3 +124,16 @@ def show(account_id, transaction_id):
 # https://developers.coinbase.com/api/v2#re-send-request-money
 # https://developers.coinbase.com/api/v2#cancel-request-money
 
+
+# https://developers.coinbase.com/api/v2#buys
+@account.group()
+def buy():
+    pass
+
+
+# https://developers.coinbase.com/api/v2#list-buys
+@buy.command()
+@click.argument('account_id')
+def list(account_id):
+    pprint(request('GET', f'/v2/accounts/{account_id}/buys'))
+
