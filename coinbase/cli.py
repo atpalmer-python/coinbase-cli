@@ -74,6 +74,15 @@ def show(account_id, transaction_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/transactions{transaction_id}'))
 
 
+# TODO (account transactions):
+# https://developers.coinbase.com/api/v2#send-money
+# https://developers.coinbase.com/api/v2#transfer-money-between-accounts
+# https://developers.coinbase.com/api/v2#request-money
+# https://developers.coinbase.com/api/v2#complete-request-money
+# https://developers.coinbase.com/api/v2#re-send-request-money
+# https://developers.coinbase.com/api/v2#cancel-request-money
+
+
 # https://developers.coinbase.com/api/v2#addresses
 @account.group()
 def address():
