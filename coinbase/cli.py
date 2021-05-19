@@ -137,3 +137,11 @@ def buy():
 def list(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/buys'))
 
+
+# https://developers.coinbase.com/api/v2#show-a-buy
+@buy.command()
+@click.argument('account_id')
+@click.argument('buy_id')
+def show(account_id, buy_id):
+    pprint(request('GET', f'/v2/accounts/{account_id}/buys/{buy_id}'))
+
