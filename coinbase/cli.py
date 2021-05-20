@@ -171,3 +171,8 @@ def list(account_id):
 def show(account_id, sell_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/sells/{sell_id}'))
 
+
+# TODO (account sell):
+# https://developers.coinbase.com/api/v2#place-sell-order
+# https://developers.coinbase.com/api/v2#commit-a-sell
+
