@@ -262,8 +262,18 @@ def xrates():
     pprint(request('GET', f'/v2/exchange-rates'))
 
 
-# TODO: prices...
 # https://developers.coinbase.com/api/v2#prices
+@data.group()
+def prices():
+    pass
+
+
+# https://developers.coinbase.com/api/v2#get-buy-price
+@prices.command()
+@click.argument('currency1')
+@click.argument('currency2')
+def buy(currency1, currency2):
+    pprint(request('GET', f'/v2/prices/{currency1}-{currency2}/buy'))
 
 
 # https://developers.coinbase.com/api/v2#time
