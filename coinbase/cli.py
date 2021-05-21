@@ -276,6 +276,14 @@ def buy(currency1, currency2):
     pprint(request('GET', f'/v2/prices/{currency1}-{currency2}/buy'))
 
 
+# https://developers.coinbase.com/api/v2#get-sell-price
+@prices.command()
+@click.argument('currency1')
+@click.argument('currency2')
+def sell(currency1, currency2):
+    pprint(request('GET', f'/v2/prices/{currency1}-{currency2}/sell'))
+
+
 # https://developers.coinbase.com/api/v2#time
 @data.command()
 def time():
