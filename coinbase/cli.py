@@ -3,6 +3,12 @@ from pprint import pprint
 from .http import request, noauth_request
 
 
+# TODO:
+# -escape URL components
+# -implement pagination
+# -implement endpoint parameters
+
+
 # https://developers.coinbase.com/api/v2
 @click.group()
 def main():
