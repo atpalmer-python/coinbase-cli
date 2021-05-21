@@ -243,3 +243,31 @@ def list():
 def show(paymethod_id):
     pprint(request('GET', f'/v2/payment-methods/{paymethod_id}'))
 
+
+# https://developers.coinbase.com/api/v2#data-endpoints
+@main.group()
+def data():
+    pass
+
+
+# https://developers.coinbase.com/api/v2#currencies
+@data.command()
+def currencies():
+    pprint(request('GET', f'/v2/currencies'))
+
+
+# https://developers.coinbase.com/api/v2#exchange-rates
+@data.command()
+def xrates():
+    pprint(request('GET', f'/v2/exchange-rates'))
+
+
+# TODO: prices...
+# https://developers.coinbase.com/api/v2#prices
+
+
+# https://developers.coinbase.com/api/v2#time
+@data.command()
+def time():
+    pprint(request('GET', f'/v2/time'))
+
