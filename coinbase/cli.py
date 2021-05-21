@@ -284,6 +284,14 @@ def sell(currency1, currency2):
     pprint(request('GET', f'/v2/prices/{currency1}-{currency2}/sell'))
 
 
+# https://developers.coinbase.com/api/v2#get-spot-price
+@prices.command()
+@click.argument('currency1')
+@click.argument('currency2')
+def spot(currency1, currency2):
+    pprint(request('GET', f'/v2/prices/{currency1}-{currency2}/spot'))
+
+
 # https://developers.coinbase.com/api/v2#time
 @data.command()
 def time():
