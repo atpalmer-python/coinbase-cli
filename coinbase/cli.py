@@ -200,3 +200,27 @@ def show(account_id, deposit_id):
 # https://developers.coinbase.com/api/v2#deposit-funds
 # https://developers.coinbase.com/api/v2#commit-a-deposit
 
+
+# https://developers.coinbase.com/api/v2#withdrawals
+@account.group()
+def withdrawal():
+    pass
+
+
+@withdrawal.command()
+@click.argument('account_id')
+def list(account_id):
+    pprint(request('GET', f'/v2/accounts/{account_id}/withdrawals'))
+
+
+@withdrawal.command()
+@click.argument('account_id')
+@click.argument('withdrawal_id')
+def show(account_id, withdrawal_id):
+    pprint(request('GET', f'/v2/accounts/{account_id}/withdrawals/{withdrawal_id}'))
+
+
+# TODO (account withrdawal)
+# https://developers.coinbase.com/api/v2#withdraw-funds
+# https://developers.coinbase.com/api/v2#commit-a-withdrawal
+
