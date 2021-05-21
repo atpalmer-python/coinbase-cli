@@ -14,17 +14,21 @@ def access_sign(ts, method, path, body):
     ).hexdigest()
 
 
-def request(method, path):
-    ts = int(time.time())
+def noauth_request(method, path, **kwargs):
     response = requests.request(
         method,
         f'https://api.coinbase.com{path}',
-        headers={
-            'CB-ACCESS-KEY': API_KEY,
-            'CB-ACCESS-SIGN': access_sign(ts, method, path, ''),
-            'CB-ACCESS-TIMESTAMP': str(ts),
-            'CB-VERSION': '2017-11-26',
-        },
-    )
+        **kwargs)
     return response.json()
+
+
+def request(method, path):
+    ts = int(time.time())
+    headers = {
+        'CB-ACCESS-KEY': API_KEY,
+        'CB-ACCESS-SIGN': access_sign(ts, method, path, ''),
+        'CB-ACCESS-TIMESTAMP': str(ts),
+        'CB-VERSION': '2017-11-26',
+    }
+    return noauth_request(method, path, headers=headers)
 
