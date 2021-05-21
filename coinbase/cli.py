@@ -1,6 +1,6 @@
 import click
 from pprint import pprint
-from .http import request
+from .http import request, noauth_request
 
 
 # https://developers.coinbase.com/api/v2
@@ -253,13 +253,13 @@ def data():
 # https://developers.coinbase.com/api/v2#currencies
 @data.command()
 def currencies():
-    pprint(request('GET', f'/v2/currencies'))
+    pprint(noauth_request('GET', f'/v2/currencies'))
 
 
 # https://developers.coinbase.com/api/v2#exchange-rates
 @data.command()
 def xrates():
-    pprint(request('GET', f'/v2/exchange-rates'))
+    pprint(noauth_request('GET', f'/v2/exchange-rates'))
 
 
 # https://developers.coinbase.com/api/v2#prices
@@ -273,7 +273,7 @@ def prices():
 @click.argument('currency1')
 @click.argument('currency2')
 def buy(currency1, currency2):
-    pprint(request('GET', f'/v2/prices/{currency1}-{currency2}/buy'))
+    pprint(noauth_request('GET', f'/v2/prices/{currency1}-{currency2}/buy'))
 
 
 # https://developers.coinbase.com/api/v2#get-sell-price
@@ -281,7 +281,7 @@ def buy(currency1, currency2):
 @click.argument('currency1')
 @click.argument('currency2')
 def sell(currency1, currency2):
-    pprint(request('GET', f'/v2/prices/{currency1}-{currency2}/sell'))
+    pprint(noauth_request('GET', f'/v2/prices/{currency1}-{currency2}/sell'))
 
 
 # https://developers.coinbase.com/api/v2#get-spot-price
@@ -289,11 +289,11 @@ def sell(currency1, currency2):
 @click.argument('currency1')
 @click.argument('currency2')
 def spot(currency1, currency2):
-    pprint(request('GET', f'/v2/prices/{currency1}-{currency2}/spot'))
+    pprint(noauth_request('GET', f'/v2/prices/{currency1}-{currency2}/spot'))
 
 
 # https://developers.coinbase.com/api/v2#time
 @data.command()
 def time():
-    pprint(request('GET', f'/v2/time'))
+    pprint(noauth_request('GET', f'/v2/time'))
 
