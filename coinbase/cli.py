@@ -224,3 +224,22 @@ def show(account_id, withdrawal_id):
 # https://developers.coinbase.com/api/v2#withdraw-funds
 # https://developers.coinbase.com/api/v2#commit-a-withdrawal
 
+
+# https://developers.coinbase.com/api/v2#payment-methods
+@main.group()
+def paymethod():
+    pass
+
+
+# https://developers.coinbase.com/api/v2#list-payment-methods
+@paymethod.command()
+def list():
+    pprint(request('GET', f'/v2/payment-methods'))
+
+
+# https://developers.coinbase.com/api/v2#show-a-payment-method
+@paymethod.command()
+@click.argument('paymethod_id')
+def show(paymethod_id):
+    pprint(request('GET', f'/v2/payment-methods/{paymethod_id}'))
+
