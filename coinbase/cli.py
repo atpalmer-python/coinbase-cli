@@ -176,3 +176,27 @@ def show(account_id, sell_id):
 # https://developers.coinbase.com/api/v2#place-sell-order
 # https://developers.coinbase.com/api/v2#commit-a-sell
 
+
+# https://developers.coinbase.com/api/v2#deposits
+@account.group()
+def deposit():
+    pass
+
+
+@deposit.command()
+@click.argument('account_id')
+def list(account_id):
+    pprint(request('GET', f'/v2/accounts/{account_id}/deposits'))
+
+
+@deposit.command()
+@click.argument('account_id')
+@click.argument('deposit_id')
+def show(account_id, deposit_id):
+    pprint(request('GET', f'/v2/accounts/{account_id}/deposits/{deposit_id}'))
+
+
+# TODO (account deposits):
+# https://developers.coinbase.com/api/v2#deposit-funds
+# https://developers.coinbase.com/api/v2#commit-a-deposit
+
