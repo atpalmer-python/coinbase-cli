@@ -1,10 +1,9 @@
-import click
+from . import click
 from pprint import pprint
 from .http import request, noauth_request
 
 
 # TODO:
-# -escape URL components
 # -implement pagination
 # -implement endpoint parameters
 
@@ -23,7 +22,7 @@ def user():
 
 # https://developers.coinbase.com/api/v2#show-a-user
 @user.command()
-@click.argument('user_id')
+@click.url_argument('user_id')
 def show(user_id):
     pprint(request('GET', f'/v2/users/{user_id}'))
 
@@ -58,7 +57,7 @@ def list():
 
 # https://developers.coinbase.com/api/v2#show-an-account
 @account.command()
-@click.argument('account_id')
+@click.url_argument('account_id')
 def show(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}'))
 
@@ -76,23 +75,23 @@ def address():
 
 # https://developers.coinbase.com/api/v2#list-addresses
 @address.command()
-@click.argument('account_id')
+@click.url_argument('account_id')
 def list(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/addresses'))
 
 
 # https://developers.coinbase.com/api/v2#show-addresss
 @address.command()
-@click.argument('account_id')
-@click.argument('address_id')
+@click.url_argument('account_id')
+@click.url_argument('address_id')
 def show(account_id, address_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/addresses/{address_id}'))
 
 
 # https://developers.coinbase.com/api/v2#list-address39s-transactions
 @address.command()
-@click.argument('account_id')
-@click.argument('address_id')
+@click.url_argument('account_id')
+@click.url_argument('address_id')
 def transactions(account_id, address_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/addresses/{address_id}/transactions'))
 
@@ -109,15 +108,15 @@ def transaction():
 
 # https://developers.coinbase.com/api/v2#list-transactions
 @transaction.command()
-@click.argument('account_id')
+@click.url_argument('account_id')
 def list(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/transactions'))
 
 
 # https://developers.coinbase.com/api/v2#show-a-transaction
 @transaction.command()
-@click.argument('account_id')
-@click.argument('transaction_id')
+@click.url_argument('account_id')
+@click.url_argument('transaction_id')
 def show(account_id, transaction_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/transactions{transaction_id}'))
 
@@ -139,15 +138,15 @@ def buy():
 
 # https://developers.coinbase.com/api/v2#list-buys
 @buy.command()
-@click.argument('account_id')
+@click.url_argument('account_id')
 def list(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/buys'))
 
 
 # https://developers.coinbase.com/api/v2#show-a-buy
 @buy.command()
-@click.argument('account_id')
-@click.argument('buy_id')
+@click.url_argument('account_id')
+@click.url_argument('buy_id')
 def show(account_id, buy_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/buys/{buy_id}'))
 
@@ -165,15 +164,15 @@ def sell():
 
 # https://developers.coinbase.com/api/v2#list-sells
 @sell.command()
-@click.argument('account_id')
+@click.url_argument('account_id')
 def list(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/sells'))
 
 
 # https://developers.coinbase.com/api/v2#show-a-sell
 @sell.command()
-@click.argument('account_id')
-@click.argument('sell_id')
+@click.url_argument('account_id')
+@click.url_argument('sell_id')
 def show(account_id, sell_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/sells/{sell_id}'))
 
@@ -190,14 +189,14 @@ def deposit():
 
 
 @deposit.command()
-@click.argument('account_id')
+@click.url_argument('account_id')
 def list(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/deposits'))
 
 
 @deposit.command()
-@click.argument('account_id')
-@click.argument('deposit_id')
+@click.url_argument('account_id')
+@click.url_argument('deposit_id')
 def show(account_id, deposit_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/deposits/{deposit_id}'))
 
@@ -214,14 +213,14 @@ def withdrawal():
 
 
 @withdrawal.command()
-@click.argument('account_id')
+@click.url_argument('account_id')
 def list(account_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/withdrawals'))
 
 
 @withdrawal.command()
-@click.argument('account_id')
-@click.argument('withdrawal_id')
+@click.url_argument('account_id')
+@click.url_argument('withdrawal_id')
 def show(account_id, withdrawal_id):
     pprint(request('GET', f'/v2/accounts/{account_id}/withdrawals/{withdrawal_id}'))
 
@@ -245,7 +244,7 @@ def list():
 
 # https://developers.coinbase.com/api/v2#show-a-payment-method
 @paymethod.command()
-@click.argument('paymethod_id')
+@click.url_argument('paymethod_id')
 def show(paymethod_id):
     pprint(request('GET', f'/v2/payment-methods/{paymethod_id}'))
 
@@ -276,24 +275,24 @@ def prices():
 
 # https://developers.coinbase.com/api/v2#get-buy-price
 @prices.command()
-@click.argument('currency1')
-@click.argument('currency2')
+@click.url_argument('currency1')
+@click.url_argument('currency2')
 def buy(currency1, currency2):
     pprint(noauth_request('GET', f'/v2/prices/{currency1}-{currency2}/buy'))
 
 
 # https://developers.coinbase.com/api/v2#get-sell-price
 @prices.command()
-@click.argument('currency1')
-@click.argument('currency2')
+@click.url_argument('currency1')
+@click.url_argument('currency2')
 def sell(currency1, currency2):
     pprint(noauth_request('GET', f'/v2/prices/{currency1}-{currency2}/sell'))
 
 
 # https://developers.coinbase.com/api/v2#get-spot-price
 @prices.command()
-@click.argument('currency1')
-@click.argument('currency2')
+@click.url_argument('currency1')
+@click.url_argument('currency2')
 def spot(currency1, currency2):
     pprint(noauth_request('GET', f'/v2/prices/{currency1}-{currency2}/spot'))
 
